@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+    body {
+        background-image: url("{% static 'leaf.jpg' %}");
+        background-size: cover; /* Adjust this as needed */
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Optional: Fixed background */
+        background-position: center center; /* Optional: Center the image */
+    }
+    #box1 {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    .nav-item:hover {
+    background-color: black;
+    color: orange !important;
+    transform: scale(1.1);
+     border-radius:5px;
+}
+a.nav-link.active {
+    background-color: black;
+    color: orange !important;
+    border-radius:5px;
+    transform: scale(1.1);
+}
+
+
+
+
+</style>
+
+    <meta charset="UTF-8">
+    <title>Vypin Upajilla Kalolsavam</title>
+</head>
+<body>
+<div class="container-fluid sticky-top" >
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a href="http://127.0.0.1:8000/kaloapp/itemdisplay/" class="navbar-brand">
+                <h3 class="text-white">ഉപജില്ലാ കലോത്സവം<img
+                        src="{% static 'img/—Pngtree—kathakali dancer for happy onam_6461667.png' %}"
+                        style="height:50px;width:50px"></h3>
+            </a>
+            <button type="button" class="navbar-toggler ms-auto me-0"  data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" style="background-color:white">
+                <span class="navbar-toggler-icon text-white"  ></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">
+                    <a href="http://127.0.0.1:8000/kaloapp/itemdisplay/" class="nav-item nav-link active" style="color:white">ITEMS</a>
+                    <a href="http://127.0.0.1:8000/kaloapp/itempointsdisplay/" class="nav-item nav-link" style="color:white">ITEM-POINTS</a>
+                    <a href="http://127.0.0.1:8000/kaloapp/schooldisplay/" class="nav-item nav-link" style="color:white">SCHOOLS</a>
+                    <a href="http://127.0.0.1:8000/kaloapp/schoolpointsdisplay/" class="nav-item nav-link" style="color:white">SCHOOL-POINTS</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Navbar End -->
+
+<!-- Hero Start -->
+<div class="container-fluid hero-header mb-1">
+    <div class="container" id="box1" style="margin-top: 50px;">
+        <div class="row justify-content-end">
+            <div class="col-auto">
+                <a href="http://127.0.0.1:8000/kaloapp/item/" class="btn btn-success btn">ADD ITEM</a><br><br>
+            </div>
+        </div>
+        <div class="table-responsive" style="height:525px">
+            <table class="table table-bordered table-striped">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Sl.No</th>
+                        <th>Item Code</th>
+                        <th>Item Name</th>
+                        <th>Category</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color:">
+                    {% for i in k %}
+                    <tr>
+                        <td style="color:white">{{ forloop.counter }}</td>
+                        <td style="color:white">{{ i.itemcode }}</td>
+                        <td style="color:white">{{ i.itemname }}</td>
+                        <td style="color:white">{{ i.category }}</td>
+                        <td>
+                            <a href="http://127.0.0.1:8000/kaloapp/itemdelete/{{i.id}}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                        <td>
+                            <a href="http://127.0.0.1:8000/kaloapp/itemedit/{{i.id}}"  class="btn btn-secondary btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+
+
+<!-- Footer Start -->
+<!--    <div class="container-fluid bg-white footer">-->
+<!--        <div class="container py-5">-->
+<!--            <div class="row g-5">-->
+<!--                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">-->
+<!--                    <a href="school_points.html" class="d-inline-block mb-3">-->
+<!--                        <h1 class="text-primary">Hairnic</h1>-->
+<!--                    </a>-->
+<!--                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aliquet, erat non malesuada consequat, nibh erat tempus risus, vitae porttitor purus nisl vitae purus.</p>-->
+<!--                </div>-->
+<!--                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">-->
+<!--                    <h5 class="mb-4">Get In Touch</h5>-->
+<!--                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>-->
+<!--                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>-->
+<!--                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>-->
+<!--                    <div class="d-flex pt-2">-->
+<!--                        <a class="btn btn-square btn-outline-primary me-1" href=""><i class="fab fa-twitter"></i></a>-->
+<!--                        <a class="btn btn-square btn-outline-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>-->
+<!--                        <a class="btn btn-square btn-outline-primary me-1" href=""><i class="fab fa-instagram"></i></a>-->
+<!--                        <a class="btn btn-square btn-outline-primary me-1" href=""><i-->
+<!--                                class="fab fa-linkedin-in"></i></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">-->
+<!--                    <h5 class="mb-4">Our Products</h5>-->
+<!--                    <a class="btn btn-link" href="">Hair Shining Shampoo</a>-->
+<!--                    <a class="btn btn-link" href="">Anti-dandruff Shampoo</a>-->
+<!--                    <a class="btn btn-link" href="">Anti Hair Fall Shampoo</a>-->
+<!--                    <a class="btn btn-link" href="">Hair Growing Shampoo</a>-->
+<!--                    <a class="btn btn-link" href="">Anti smell Shampoo</a>-->
+<!--                </div>-->
+<!--                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">-->
+<!--                    <h5 class="mb-4">Popular Link</h5>-->
+<!--                    <a class="btn btn-link" href="">About Us</a>-->
+<!--                    <a class="btn btn-link" href="">Contact Us</a>-->
+<!--                    <a class="btn btn-link" href="">Privacy Policy</a>-->
+<!--                    <a class="btn btn-link" href="">Terms & Condition</a>-->
+<!--                    <a class="btn btn-link" href="">Career</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="container wow fadeIn" data-wow-delay="0.1s">-->
+<!--            <div class="copyright">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">-->
+<!--                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.-->
+
+<!--                        &lt;!&ndash;/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/&ndash;&gt;-->
+<!--                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6 text-center text-md-end">-->
+<!--                        <div class="footer-menu">-->
+<!--                            <a href="">Home</a>-->
+<!--                            <a href="">Cookies</a>-->
+<!--                            <a href="">Help</a>-->
+<!--                            <a href="">FAQs</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!-- Footer End -->
+
+
+</body>
+</html>

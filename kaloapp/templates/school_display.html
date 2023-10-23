@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <style>
+    body {
+        background-image: url("{% static 'leaf.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center center;
+    }
+    #box1 {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    .nav-item:hover {
+    background-color: black;
+    color: orange !important;
+    transform: scale(1.1);
+     border-radius:5px;
+}
+
+a.nav-link.active {
+    background-color: black;
+    color: orange !important;
+    border-radius:5px;
+    transform: scale(1.1);
+}
+
+
+
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Vypin Upajilla Kalolsavam</title>
+</head>
+<body>
+<div class="container-fluid sticky-top">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light p-0">
+            <a href="http://127.0.0.1:8000/kaloapp/itemdisplay/" class="navbar-brand">
+                <h3 class="text-white">ഉപജില്ലാ കലോത്സവം<img
+                        src="{% static 'img/—Pngtree—kathakali dancer for happy onam_6461667.png' %}"
+                        style="height:50px;width:50px"></h3>
+            </a>
+            <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse" style="background-color:white">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto">
+                    <a href="http://127.0.0.1:8000/kaloapp/itemdisplay/" class="nav-item nav-link " style="color:white">ITEMS</a>
+                    <a href="http://127.0.0.1:8000/kaloapp/itempointsdisplay/" class="nav-item nav-link"
+                       style="color:white">ITEM-POINTS</a>
+                    <a href="http://127.0.0.1:8000/kaloapp/schooldisplay/" class="nav-item nav-link active"
+                       style="color:white">SCHOOLS</a>
+                    <a href="http://127.0.0.1:8000/kaloapp/schoolpointsdisplay/" class="nav-item nav-link"
+                       style="color:white">SCHOOL-POINTS</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Navbar End -->
+
+<!-- Hero Start -->
+<form method="post">{% csrf_token %}
+    <div class="container-fluid hero-header mb-1">
+        <div class="container" id="box1" style="margin-top: 50px;">
+            <div class="row justify-content-end">
+
+                <div class="col-auto">
+                    <div class="form-group">
+                        <select class="form-control" required name="cat" id="category">
+                            <option disabled >--Select Categor--</option>
+                            <option value="All">All</option>
+                            <optgroup label="General">
+                                <option>General LP</option>
+                                <option>General UP</option>
+                                <option>General HS</option>
+                                <option>General HSS</option>
+                            </optgroup>
+                            <optgroup label="Arabic">
+                                <option>Arabic LP</option>
+                                <option>Arabic UP</option>
+                                <option>Arabic HS</option>
+                            </optgroup>
+                            <optgroup label="Sanskrit">
+                                <option>Sanskrit UP</option>
+                                <option>Sanskrit HS</option>
+                            </optgroup>
+                        </select>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="table-responsive" style="height:530px;margin-top: 10px">
+
+                <table class="table table-bordered table-striped">
+                    <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Sl.No</th>
+                        <th>School Code</th>
+                        <th>School Name</th>
+                        <th>category</th>
+                        <th>Points</th>
+                        <th>A grade</th>
+                        <th>B grade</th>
+                        <th>C grade</th>
+                        <th>Edit</th>
+                        <!--                        <th>Update</th>-->
+                    </tr>
+                    </thead>
+                    <tbody style="background-color:">
+                    {% for i in k %}
+                    <tr>
+                        <td style="color:white">{{ forloop.counter }}</td>
+                        <td style="color:white">{{ i.schoolcode }}</td>
+                        <td style="color:white">{{ i.schoolname }}</td>
+                        <td style="color:white">{{ i.category }}</td>
+                        <td style="color:white">{{ i.mark }}</td>
+                        <td style="color:white">{{ i.agrade }}</td>
+                        <td style="color:white">{{ i.bgrade }}</td>
+                        <td style="color:white">{{ i.cgrade }}</td>
+                        <td><a href="http://127.0.0.1:8000/kaloapp/schooledit/{{i.id}}" class="btn btn-danger">Edit</a>
+                        </td>
+                        <!--                        <td><button type="submit" class="btn btn-danger">Submit</button></td>-->
+                        <!--                        <td>-->
+                        <!--                            <a href="http://127.0.0.1:8000/kaloapp/schooldelete/{{i.id}}" class="btn btn-danger btn-sm">Delete</a>-->
+                        <!--                        </td>-->
+                        <!--                        <td>-->
+                        <!--                            <a href="http://127.0.0.1:8000/kaloapp/schooledit/{{i.id}}" class="btn btn-secondary btn-sm">Edit</a>-->
+                        <!--                        </td>-->
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</form>
+<!-- Hero End -->
+<script>
+    const categorySelect = document.getElementById('category');
+    const tableRows = document.querySelectorAll('tbody tr');
+
+    categorySelect.addEventListener('change', () => {
+        const selectedCategory = categorySelect.value;
+
+        tableRows.forEach(row => {
+            const categoryCell = row.querySelector('td:nth-child(4)'); // Assuming category is in the 4th cell
+
+            if (selectedCategory === 'All' || categoryCell.textContent === selectedCategory) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+
+</script>
+
+
+</body>
+</html>

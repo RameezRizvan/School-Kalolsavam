@@ -1,0 +1,114 @@
+    <!DOCTYPE html>
+    {% load static %}
+    <html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/4d4ce11067.js" crossorigin="anonymous"></script>
+        <style>
+        body {
+            background-image: url("{% static 'leaf.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        #box1 {
+                background-color: rgba(0, 0, 0, 0.6);
+                padding: 20px;
+                border-radius: 10px;
+            }
+        .nav-item:hover {
+        background-color: black;
+        color: orange !important;
+        transform: scale(1.1);
+         border-radius:5px;
+    }
+    a.nav-link.active {
+        background-color: black;
+        color: orange !important;
+        border-radius:5px;
+        transform: scale(1.1);
+    }
+
+
+
+    </style>
+
+        <meta charset="UTF-8">
+        <title>Vypin Upajilla Kalolsavam</title>
+    </head>
+    <body>
+    <div class="container-fluid sticky-top" >
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light p-0">
+                <a href="http://127.0.0.1:8000/kaloapp/itemdisplay/" class="navbar-brand">
+                    <h3 class="text-white">ഉപജില്ലാ കലോത്സവം<img
+                            src="{% static 'img/—Pngtree—kathakali dancer for happy onam_6461667.png' %}"
+                            style="height:50px;width:50px"></h3>
+                </a>
+                <button type="button" class="navbar-toggler ms-auto me-0"  data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse" style="background-color:white">
+                    <span class="navbar-toggler-icon text-white"  ></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="http://127.0.0.1:8000/kaloapp/itemdisplay/" class="nav-item nav-link " style="color:white">ITEMS</a>
+                        <a href="http://127.0.0.1:8000/kaloapp/itempointsdisplay/" class="nav-item nav-link active" style="color:white">ITEM-POINTS</a>
+                        <a href="http://127.0.0.1:8000/kaloapp/schooldisplay/" class="nav-item nav-link" style="color:white">SCHOOLS</a>
+                        <a href="http://127.0.0.1:8000/kaloapp/schoolpointsdisplay/" class="nav-item nav-link" style="color:white">SCHOOL-POINTS</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Hero Start -->
+    <div class="container-fluid hero-header mb-1">
+        <div class="container" id="box1" style="margin-top: 50px;">
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    <a href="http://127.0.0.1:8000/kaloapp/itempoints/" class="btn btn-success btn">ADD POINTS</a><br><br>
+                </div>
+            </div>
+            <div class="table-responsive" style="height:525px">
+                <table class="table table-bordered table-striped">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>sl:no</th>
+                            <th>Category</th>
+                            <th>Item code - name</th>
+                            <th>File</th>
+                            <th>Updated time</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color:">
+                        {% for i,j,k,l,m in a %}
+                        <tr>
+                             <td style="color:white">{{ forloop.counter }}</td>
+                            <td style="color:white">{{ i }}</td>
+                            <td style="color:white">{{ j }}</td>
+                         <td><a href="{% static 'item_points/'|add:k %}" download style="color:white">Download <i class="fa-solid fa-download "></i></a></td>
+                            <td style="color:white">{{ l }}</td>
+                            <td>
+                                <a href="http://127.0.0.1:8000/kaloapp/itempointsdelete/{{ m }}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                            <td>
+                                <a href="http://127.0.0.1:8000/kaloapp/itempointsedit/{{ m }}" class="btn btn-secondary btn-sm">Edit</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+    </body>
+    </html>
